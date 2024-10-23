@@ -1,4 +1,4 @@
-import './App.css';
+import './style.scss';
 import Header from './componentes/Header';
 import Nav from './componentes/Nav';
 import Hero from './componentes/Hero';
@@ -10,8 +10,7 @@ import Informacion from './componentes/Informacion';
 function App() {
   return (
       <div className="app">
-        <Nav />
-        <Header/>
+        <Nav />        
         <Hero />
         <Servicios />
         <Productos />
