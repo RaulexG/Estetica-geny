@@ -4,6 +4,7 @@ function Informacion() {
   return (
     <section className="informacion-section">
       <div className="informacion-contacto">
+        <h1>INFORMACIÓN</h1>
         <p>(+52) 1234456677</p>
         <p>estetica@gmail.com</p>
         <div className="informacion-sociales">
@@ -22,7 +23,7 @@ function Informacion() {
 
       <div className="informacion-horario">
         <div className="horario-card">
-          <img src="/imagenes/open-icon.png" alt="Horario de atención" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="-2 -2 24 24"><path fill="currentColor" d="M6 2H3a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM3.01 8v9.965H5V13a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4.965h6.013V8H15c-.768 0-1.47-.289-2-.764A3 3 0 0 1 11 8H9c-.768 0-1.47-.289-2-.764A3 3 0 0 1 5 8zm-2-.754A3 3 0 0 1 0 5V3a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2c0 .882-.38 1.676-.987 2.225v10.74a2 2 0 0 1-2 2h-7.64A2 2 0 0 1 9 20H7a2 2 0 0 1-.373-.035H3.011a2 2 0 0 1-2-2V7.245zM9 17.966V13H7v4.965h2zM12 2H8v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm2 0v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm0 9h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1"/></svg>
           <div className="horario-info">
             <h3>Horario de atención</h3>
             <p>8:00 AM - 12:00 PM</p>
@@ -31,8 +32,17 @@ function Informacion() {
       </div>
 
       <div className="informacion-mapa">
-        <img src="/imagenes/mapa.png" alt="Ubicación" />
-      </div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d955.1189269201012!2d-93.12319772616095!3d16.75299199951788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f1531681d5%3A0x40d95c198f16ec81!2sHair%20Studio!5e0!3m2!1ses-419!2smx!4v1729913452166!5m2!1ses-419!2smx"
+    width="600"
+    height="450"
+    style={{ border: "0" }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
     </section>
   );
 }
