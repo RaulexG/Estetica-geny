@@ -2,7 +2,7 @@ import React from 'react';
 
 function Hero() {
   return (
-    <section
+    <section id="inicio"
       className="relative bg-cover bg-center h-screen"
       style={{ backgroundImage: "url('/img/bg-principal.jpg')" }}
     >

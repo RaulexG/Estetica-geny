@@ -2,7 +2,7 @@ import React from 'react';
 
 function Citas() {
   return (
-    <section className="relative bg-cover bg-center h-screen" style={{ backgroundImage: "url('/img/bg-cts.svg')" }}>
+    <section id="citas" className="relative bg-cover bg-center h-screen" style={{ backgroundImage: "url('/img/bg-cts.svg')" }}>
       <div className="absolute inset-0 bg-gray-bg bg-opacity-60 flex flex-col items-center justify-center text-center px-4">
         <h2 className="text-white text-6xl font-bold mb-8">¡AGENDA TU CITA!</h2>
         <p className="text-pink-300 font-bold mb-8">Por favor, rellene el formulario y nos pondremos en contacto con usted.</p>

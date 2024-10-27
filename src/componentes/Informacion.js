@@ -2,7 +2,7 @@ import React from 'react';
 
 function Informacion() {
   return (
-    <section className="bg-pink-200 p-8 rounded-lg shadow-lg ">
+    <section id="informacion" className="bg-pink-200 p-8 rounded-lg shadow-lg ">
       <div className='flex justify-center '>
       <h1 className="text-2xl font-bold text-black mb-4">INFORMACIÓN</h1>
       </div>

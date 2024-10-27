@@ -6,6 +6,7 @@ import Servicios from './componentes/Servicios';
 import Productos from './componentes/Productos';
 import Citas from './componentes/Citas';
 import Informacion from './componentes/Informacion';
+import Footer from './componentes/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Productos />
         <Citas />
         <Informacion />
+        <Footer />
     </div>
   );
 }
