@@ -3,9 +3,9 @@ import Producto from './Producto';
 
 function Categoria({ titulo, productos }) {
   return (
-    <div className="categoria">
-      <h2 className="categoria__titulo">{titulo}</h2>
-      <div className="categoria__productos">
+    <div className="mb-12">
+      <h2 className="text-xl font-bold text-pink-600 mb-4">{titulo}</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {productos.map((producto, index) => (
           <Producto
             key={index}

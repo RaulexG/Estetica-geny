@@ -1,7 +1,6 @@
-// Productos.js
 import React from 'react';
 import Categoria from './Categoria';
-import shampooImg from '../imagenes/shampoo-olaplex.png';  // Asegúrate de tener las imágenes en la carpeta correcta
+import shampooImg from '../imagenes/shampoo-olaplex.png';
 import cremaImg from '../imagenes/crema-sebastian.jpg';
 
 function Productos() {
@@ -20,8 +19,8 @@ function Productos() {
   ];
 
   return (
-    <div className="productos">
-      <h1 className="productos__titulo">Productos</h1>
+    <div className="bg-gray-200 p-8">
+      <h1 className="text-center font-bold text-3xl mb-8">Productos</h1>
       <Categoria titulo="Shampoo" productos={productosShampoo} />
       <Categoria titulo="Cremas" productos={productosCremas} />
     </div>
@@ -29,3 +28,4 @@ function Productos() {
 }
 
 export default Productos;
+
