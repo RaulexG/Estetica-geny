@@ -1,12 +1,12 @@
 import './style.scss';
-import Header from './componentes/Header';
-import Nav from './componentes/Nav';
-import Hero from './componentes/Hero';
-import Servicios from './componentes/Servicios';
-import Productos from './componentes/Productos';
-import Citas from './componentes/Citas';
-import Informacion from './componentes/Informacion';
-import Footer from './componentes/Footer';
+import Header from './_cliente/Header';
+import Nav from './_cliente/Nav';
+import Hero from './_cliente/Hero';
+import Servicios from './_cliente/Servicios';
+import Productos from './_cliente/Productos';
+import Citas from './_cliente/Citas';
+import Informacion from './_cliente/Informacion';
+import Footer from './_cliente/Footer';
 
 
 function App() {
