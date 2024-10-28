@@ -20,7 +20,7 @@ function Productos() {
 
   return (
     <div id="productos" className="bg-gray-200 p-8">
-      <h1 className="text-center font-bold text-3xl mb-8">Productos</h1>
+      <h1 className="text-center font-bold text-5xl mb-8">PRODUCTOS</h1>
       <Categoria titulo="Shampoo" productos={productosShampoo} />
       <Categoria titulo="Cremas" productos={productosCremas} />
     </div>

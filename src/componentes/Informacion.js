@@ -4,9 +4,9 @@ function Informacion() {
   return (
     <section id="informacion" className="bg-pink-200 p-8 rounded-lg shadow-lg ">
       <div className='flex justify-center '>
-      <h1 className="text-2xl font-bold text-black mb-4">INFORMACIÓN</h1>
+      <h1 className="text-5xl font-bold text-black mb-4">INFORMACIÓN</h1>
       </div>
-      <div className='flex justify-center gap-7'>
+      <div className='flex justify-center gap-7 p-8'>
       <div className="text-center w-80">        
         <p className="text-black">( +52 ) 1234456677</p>
         <p className="text-black">estetica@gmail.com</p>
@@ -40,7 +40,7 @@ function Informacion() {
       <div className="mt-8 ">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d955.1189269201012!2d-93.12319772616095!3d16.75299199951788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f1531681d5%3A0x40d95c198f16ec81!2sHair%20Studio!5e0!3m2!1ses-419!2smx!4v1729913452166!5m2!1ses-419!2smx"
-          className="w-full h-64 rounded-lg shadow-lg"
+          className="w-full h-96 rounded-lg shadow-lg"
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

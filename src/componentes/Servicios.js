@@ -21,7 +21,7 @@ const services = [
 function Servicios() {
   return (
     <section id="servicios" className="services-section p-8 mb-8">
-      <h1 className="text-3xl font-bold text-center text-pink-600 mb-8">Servicios</h1>
+      <h1 className="text-5xl font-bold text-center text-pink-600 mb-8">SERVICIOS</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {services.map((service, index) => (
           <div
