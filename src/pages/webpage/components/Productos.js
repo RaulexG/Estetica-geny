@@ -1,7 +1,7 @@
 import React from 'react';
 import Categoria from './Categoria';
-import shampooImg from '../imagenes/shampoo-olaplex.png';
-import cremaImg from '../imagenes/crema-sebastian.jpg';
+import shampooImg from '../../../imagenes/shampoo-olaplex.png';
+import cremaImg from '../../../imagenes/crema-sebastian.jpg';
 
 function Productos() {
   const productosShampoo = [

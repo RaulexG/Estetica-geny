@@ -1,7 +1,7 @@
 import React from 'react';
-import manicureImg from '../imagenes/manicure.jpeg';
-import cortesNinosImg from '../imagenes/cortes-niños.jpg';
-import cortesCaballeroImg from '../imagenes/cortes-caballeros.jpg';
+import manicureImg from '../../../imagenes/manicure.jpeg';
+import cortesNinosImg from '../../../imagenes/cortes-niños.jpg';
+import cortesCaballeroImg from '../../../imagenes/cortes-caballeros.jpg';
 
 const services = [
   { name: "Manicure ", img: manicureImg },
