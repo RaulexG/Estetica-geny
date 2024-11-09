@@ -5,17 +5,17 @@ import cremaImg from '../../../imagenes/crema-sebastian.jpg';
 
 function Productos() {
   const productosShampoo = [
-    { nombre: 'Shampoo Olaplex N°4P', precio: 450, imagen: shampooImg, estrellas: 5 },
-    { nombre: 'Shampoo Olaplex N°4P', precio: 450, imagen: shampooImg, estrellas: 5 },
-    { nombre: 'Shampoo Olaplex N°4P', precio: 450, imagen: shampooImg, estrellas: 5 },
-    { nombre: 'Shampoo Olaplex N°4P', precio: 450, imagen: shampooImg, estrellas: 5 },
+    { nombre: 'Shampoo Olaplex N°4P', precio: 450, imagen: shampooImg },
+    { nombre: 'Shampoo Olaplex N°4P', precio: 450, imagen: shampooImg },
+    { nombre: 'Shampoo Olaplex N°4P', precio: 450, imagen: shampooImg },
+    { nombre: 'Shampoo Olaplex N°4P', precio: 450, imagen: shampooImg },
   ];
 
   const productosCremas = [
-    { nombre: 'Crema Sebastian', precio: 500, imagen: cremaImg, estrellas: 1 },
-    { nombre: 'Crema Sebastian', precio: 500, imagen: cremaImg, estrellas: 1 },
-    { nombre: 'Crema Sebastian', precio: 500, imagen: cremaImg, estrellas: 1 },
-    { nombre: 'Crema Sebastian', precio: 500, imagen: cremaImg, estrellas: 1 },
+    { nombre: 'Crema Sebastian', precio: 500, imagen: cremaImg },
+    { nombre: 'Crema Sebastian', precio: 500, imagen: cremaImg },
+    { nombre: 'Crema Sebastian', precio: 500, imagen: cremaImg },
+    { nombre: 'Crema Sebastian', precio: 500, imagen: cremaImg },
   ];
 
   return (
@@ -28,4 +28,3 @@ function Productos() {
 }
 
 export default Productos;
-
