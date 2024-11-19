@@ -16,7 +16,7 @@ function Cuentas() {
           value={accountType}
           onChange={(e) => setAccountType(e.target.value)}
         >
-          <option value="usuario">Cuenta de usuario</option>
+          <option value="usuario">Cuenta de administrador</option>
           <option value="trabajador">Cuenta de trabajador</option>
           <option value="cliente">Cuenta de cliente</option>
         </select>

@@ -37,12 +37,6 @@ function Perfil() {
 
         <div>
           <button className="bg-gray-500 text-white py-2 rounded-lg w-full">
-            Crear cuenta
-          </button>
-        </div>
-
-        <div>
-          <button className="bg-gray-500 text-white py-2 rounded-lg w-full">
             Eliminar cuenta
           </button>
         </div>
