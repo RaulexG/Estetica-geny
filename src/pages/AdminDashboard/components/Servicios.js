@@ -6,7 +6,7 @@ function Servicios() {
   const navigate = useNavigate();
 
   const handleAddService = () => {
-    navigate('/admin/servicios/editar/nuevo');
+    navigate('/admin/servicios/agregar');
   };
 
   const handleEditService = (id) => {

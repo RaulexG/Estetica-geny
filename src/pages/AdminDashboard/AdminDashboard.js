@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import Servicios from './components/Servicios';
 import EditarServicio from './components/EditarServicio';
 import Productos from './components/Productos';
+import AgregarServicio from './components/AgregarServicio'; // Importa el componente
 import AgregarProducto from './components/AgregarProducto'; // Asegúrate de que esté importado correctamente
 import EditarProducto from './components/EditarProducto';   // Asegúrate de que esté importado correctamente
 import Cuentas from './components/Cuentas';
@@ -19,6 +20,7 @@ function AdminDashboard() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/servicios" element={<Servicios />} />
+          <Route path="/servicios/agregar" element={<AgregarServicio />} />
           <Route path="/servicios/editar/:id" element={<EditarServicio />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/productos/agregar" element={<AgregarProducto />} /> {/* Ruta correcta para agregar producto */}
