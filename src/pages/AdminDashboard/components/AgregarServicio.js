@@ -4,22 +4,22 @@ import React from 'react';
 function AgregarServicio() {
   return (
     <div className="p-8 bg-gray-50 rounded-lg">
-      <h2 className="text-xl font-bold text-white bg-gray-400 py-3 text-center rounded-t-lg">Agregar servicio</h2>
+      <h2 className="text-xl font-bold text-white bg-gray-400 py-3 text-center rounded-t-lg">Agregar sehdfhghfgrvicio</h2>
       <form className="flex flex-col bg-gray-100 p-6 rounded-b-lg space-y-4">
 
         <div className="flex flex-col">
-          <label className="font-medium">Nombre del servicio</label>
+          <label className="font-medium">Nombre del serhgfhfghfhgfgvicio</label>
           <input type="text" className="mt-2 p-2 border border-gray-300 rounded bg-pink-200" />
         </div>
         
         <div className="flex flex-col">
-          <label className="font-medium">Descripción</label>
+          <label className="font-medium">Descripcihgfhfghgfhgfhgfón</label>
           <textarea className="mt-2 p-2 border border-gray-300 rounded bg-pink-200" />
         </div>
         
         <div className="flex space-x-4">
           <div className="flex-1">
-            <label className="font-medium">Precio</label>
+            <label className="font-medium">Precgfhfghgfhgfhfghfhgfio</label>
             <input type="text" className="mt-2 p-2 border border-gray-300 rounded bg-pink-200 w-full" />
           </div>
           <div className="flex-1">
