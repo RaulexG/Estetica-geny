@@ -1,86 +1,165 @@
 // src/pages/AdminDashboard/components/EditarServicio.js
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function EditarServicio() {
   const { id } = useParams();
   const isEditing = id !== 'nuevo';
 
+  // Estados
+  const [imagen, setImagen] = useState(null);
+  const [productosUsados, setProductosUsados] = useState([]);
+  const [productoSeleccionado, setProductoSeleccionado] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [descripcion, setDescripcion] = useState('');
+  const [precio, setPrecio] = useState('');
+  const [duracion, setDuracion] = useState('');
+
+  // Manejar la carga de la imagen
+  const manejarImagen = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => setImagen(reader.result);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Manejar la selección de productos
+  const agregarProducto = () => {
+    if (productoSeleccionado) {
+      setProductosUsados([...productosUsados, productoSeleccionado]);
+      setProductoSeleccionado('');
+    }
+  };
+
+  const manejarSubmit = (e) => {
+    e.preventDefault();
+    const servicio = {
+      id,
+      nombre,
+      descripcion,
+      precio,
+      duracion,
+      productosUsados,
+      imagen,
+    };
+    console.log(isEditing ? 'Actualizando servicio' : 'Agregando servicio', servicio);
+    // Aquí agregarías la lógica para guardar o actualizar el servicio
+  };
+
   return (
-    <div className="p-8 flex justify-center">
-      <div className="bg-gray-100 rounded-lg p-8 w-full max-w-3xl">
-        <h2 className="text-3xl font-bold text-center mb-6 bg-gray-500 text-white p-4 rounded-t-lg">
-          {isEditing ? 'Editar servicio' : 'Agregar servicio'}
-        </h2>
-
-        <form className="flex flex-col gap-6">
-          <div className="flex flex-col sm:flex-row gap-6">
-            {/* Nombre del Servicio */}
-            <div className="flex-1">
-              <label className="block font-semibold mb-2">Nombre del servicio</label>
+    <div className="p-8 max-w-5xl mx-auto">
+      <h2 className="text-2xl font-bold text-white bg-gray-500 py-3 text-center rounded-t-lg">
+        {isEditing ? 'Editar servicio' : 'Agregar servicio'}
+      </h2>
+      <form className="bg-gray-100 p-6 rounded-b-lg space-y-4" onSubmit={manejarSubmit}>
+        <div className="flex space-x-6">
+          {/* Sección Izquierda */}
+          <div className="flex-1 space-y-4">
+            <div className="flex flex-col">
+              <label className="font-medium">Nombre del servicio</label>
               <input
                 type="text"
-                className="w-full p-3 rounded bg-pink-300 border border-gray-300 focus:outline-none"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                className="mt-2 p-3 border border-gray-300 rounded bg-pink-200"
               />
             </div>
 
-            {/* Imagen del Servicio */}
-            <div className="flex-1 flex flex-col items-center justify-center border border-gray-400 rounded-lg p-6 bg-gray-300">
-              <div className="text-center text-gray-500">
-                {/* Ícono de subir imagen */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="3em"
-                  height="3em"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M19 6h-1.586l-1-1c-.579-.579-1.595-1-2.414-1h-4c-.819 0-1.835.421-2.414 1l-1 1H5C3.346 6 2 7.346 2 9v8c0 1.654 1.346 3 3 3h14c1.654 0 3-1.346 3-3V9c0-1.654-1.346-3-3-3m-7 10a3.5 3.5 0 1 1 .001-7.001A3.5 3.5 0 0 1 12 16m6-4.701a1.3 1.3 0 1 1 0-2.6a1.3 1.3 0 0 1 0 2.6" />
-                </svg>
+            <div className="flex space-x-4">
+              <div className="flex-1">
+                <label className="font-medium">Precio</label>
+                <input
+                  type="text"
+                  value={precio}
+                  onChange={(e) => setPrecio(e.target.value)}
+                  className="mt-2 p-3 border border-gray-300 rounded bg-pink-200 w-full"
+                />
               </div>
-              <button className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg">
-                Agregar imagen
-              </button>
+              <div className="flex-1">
+                <label className="font-medium">Duración</label>
+                <input
+                  type="number"
+                  value={duracion}
+                  onChange={(e) => setDuracion(e.target.value)}
+                  className="mt-2 p-3 border border-gray-300 rounded bg-pink-200 w-full"
+                  placeholder="Minutos"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Descripción */}
-          <div>
-            <label className="block font-semibold mb-2">Descripción</label>
-            <textarea className="w-full h-32 p-3 rounded bg-pink-300 border border-gray-300 focus:outline-none resize-none"></textarea>
-          </div>
-
-          {/* Precio y Duración */}
-          <div className="flex gap-6">
-            <div className="flex-1">
-              <label className="block font-semibold mb-2">Precio</label>
-              <input
-                type="text"
-                className="w-full p-3 rounded bg-pink-300 border border-gray-300 focus:outline-none"
-              />
+          {/* Sección Derecha: Imagen */}
+          <div className="w-1/2 flex flex-col items-center">
+            <div className="bg-gray-300 rounded-lg h-40 w-full flex items-center justify-center relative">
+              {imagen ? (
+                <img
+                  src={imagen}
+                  alt="Imagen cargada"
+                  className="object-cover w-full h-full rounded-lg"
+                />
+              ) : (
+                <span className="text-gray-600">Agregar imagen</span>
+              )}
             </div>
-            <div className="flex-1">
-              <label className="block font-semibold mb-2">Duración</label>
-              <input
-                type="text"
-                className="w-full p-3 rounded bg-pink-300 border border-gray-300 focus:outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Botón de agregar/actualizar */}
-          <div className="flex justify-center mt-6">
-            <button
-              type="submit"
-              className="bg-gray-500 text-white w-1/3 py-3 rounded-lg font-semibold"
+            <input
+              type="file"
+              accept="image/*"
+              onChange={manejarImagen}
+              className="hidden"
+              id="subirImagen"
+            />
+            <label
+              htmlFor="subirImagen"
+              className="mt-2 bg-gray-400 text-white px-3 py-2 rounded cursor-pointer"
             >
-              {isEditing ? 'Actualizar' : 'Agregar'}
-            </button>
+              Agregar imagen
+            </label>
           </div>
-        </form>
-      </div>
+        </div>
+
+        {/* Productos usados */}
+        <div className="flex flex-col">
+          <label className="font-medium">Productos usados</label>
+          <div className="bg-pink-200 p-3 rounded mt-2 h-20 overflow-y-auto">
+            {productosUsados.map((producto, index) => (
+              <span key={index} className="block">
+                {producto}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Seleccionar producto */}
+        <div className="flex items-center space-x-4">
+          <select
+            value={productoSeleccionado}
+            onChange={(e) => setProductoSeleccionado(e.target.value)}
+            className="p-3 border border-gray-300 rounded bg-pink-200 flex-1"
+          >
+            <option value="">Seleccionar producto</option>
+            <option value="Producto 1">Producto 1</option>
+            <option value="Producto 2">Producto 2</option>
+            <option value="Producto 3">Producto 3</option>
+          </select>
+          <button
+            type="button"
+            onClick={agregarProducto}
+            className="bg-gray-400 text-white px-3 py-2 rounded"
+          >
+            Agregar
+          </button>
+        </div>
+
+        {/* Botón de guardar */}
+        <button type="submit" className="bg-gray-500 text-white w-full py-3 rounded mt-6">
+          {isEditing ? 'Actualizar' : 'Agregar'}
+        </button>
+      </form>
     </div>
   );
 }
 
 export default EditarServicio;
+
