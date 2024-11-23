@@ -71,39 +71,27 @@ function AgregarServicio() {
 
   const manejarSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!name || !price || !duration || productosUsados.length === 0 || !image) {
       alert('Por favor, completa todos los campos.');
       return;
     }
-  
-    // Crear el objeto FormData
+
+    const serviceData = {
+      name,
+      price: parseFloat(price),
+      duration,
+      products: productosUsados.map((p) => ({
+        product: { idProduct: p.product.idProduct },
+        quantityProduct: p.quantityProduct,
+      })),
+    };
+
     const formData = new FormData();
-    formData.append(
-      'service',
-      new Blob(
-        [
-          JSON.stringify({
-            name,
-            price: parseFloat(price),
-            duration,
-            products: productosUsados.map((p) => ({
-              product: { idProduct: p.product.idProduct },
-              quantityProduct: p.quantityProduct,
-            })),
-          })
-        ],
-        { type: 'application/json' }
-      )
-    );
+    formData.append('service', new Blob([JSON.stringify(serviceData)], { type: 'application/json' }));
     formData.append('image', image);
-  
-    // **Depuración**
-    console.log('Contenido del FormData:');
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
-    }
-  
+
+
     try {
       await addService(formData); // Llamar al servicio para guardar
       alert('Servicio agregado exitosamente.');
