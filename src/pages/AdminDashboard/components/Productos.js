@@ -31,7 +31,7 @@ function Productos() {
     );
   };
 
-  // Manejo de eliminación de productos
+  // Manejo de eliminación de productos seleccionados
   const handleDeleteProducts = async () => {
     try {
       for (const id of selectedProducts) {
@@ -92,6 +92,7 @@ function Productos() {
                 <td className="p-4 text-center text-gray-600 font-semibold">${product.price}</td>
                 <td className="p-4 text-center">
                   <button
+                    className="focus:outline-none"
                     onClick={() => {
                       if (window.confirm('¿Estás seguro de que deseas eliminar este producto?')) {
                         deleteProduct(product.idProduct)
@@ -105,9 +106,17 @@ function Productos() {
                           });
                       }
                     }}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                   >
-                    Eliminar
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.2em"
+                      height="1.2em"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="text-gray-500 hover:text-red-500 transition"
+                    >
+                      <path d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z" />
+                    </svg>
                   </button>
                 </td>
               </tr>
