@@ -19,8 +19,9 @@ function PanelCitas() {
   const fetchAppointments = async () => {
     try {
       const response = await getAllAppointments();
-      setAppointments(response.data || []);
-      setFilteredAppointments(response.data || []); // Inicialmente, mostrar todas las citas
+      console.log(response)
+      setAppointments(response || []);
+      setFilteredAppointments(response || []); // Inicialmente, mostrar todas las citas
     } catch (error) {
       console.error('Error al cargar citas:', error);
     }
