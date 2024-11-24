@@ -1,68 +1,81 @@
 import React, { useState, useEffect } from "react";
 import { getAllProducts } from "../../../services/productService";
 import { getAllEmployees } from "../../../services/employeeService";
+import { getAllClients } from '../../../services/clientsService'; // Importar el servicio de clientes
 import { addSale } from "../../../services/saleService";
 
 function PuntoDeVenta() {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [employee, setEmployee] = useState(null);
-  const [employees, setEmployees] = useState([]); // Asegurarse de inicializar como array vacío
-  const [products, setProducts] = useState([]); // Productos cargados desde el backend
+  const [employees, setEmployees] = useState([]);
+  const [clients, setClients] = useState([]);
+  const [client, setClient] = useState(null);
+  const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("EFECTIVO");
+  const [quantity, setQuantity] = useState(1); // Nueva cantidad para agregar productos
 
-  // Cargar productos y empleados al inicio
+  const paymentMethods = ["CREDITO", "TRANSFERENCIA", "EFECTIVO"];
+
   useEffect(() => {
     fetchProducts();
     fetchEmployees();
+    fetchClients();
   }, []);
 
-  // Recalcular el total cuando cambien los productos seleccionados
   useEffect(() => {
     calculateTotal();
   }, [selectedProducts]);
 
-  // Cargar productos desde el backend
   const fetchProducts = async () => {
     try {
       const response = await getAllProducts();
-      setProducts(response || []);
+      setProducts(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
-      console.error("Error al cargar los productos:", error);
+      setProducts([]);
     }
   };
 
-  // Cargar empleados desde el backend
   const fetchEmployees = async () => {
     try {
       const response = await getAllEmployees();
-      setEmployees(response || []);
-      setEmployee(response[0]?.idEmployee || null); // Seleccionar el primer empleado por defecto
+      setEmployees(Array.isArray(response.data) ? response.data : []);
+      setEmployee(response.data?.[0]?.idEmployee || null);
     } catch (error) {
-      console.error("Error al cargar empleados:", error);
-      setEmployees([]); // En caso de error, asegúrate de mantener un array vacío
+      setEmployees([]);
     }
   };
 
-  // Agregar un producto a la lista de venta
-  const addProduct = (productId, quantity) => {
+  const fetchClients = async () => {
+    try {
+      const response = await getAllClients();
+      setClients(Array.isArray(response.data) ? response.data : []);
+      setClient(response.data?.[0]?.idClient || null);
+    } catch (error) {
+      setClients([]);
+    }
+  };
+
+  const addProduct = (productId) => {
     const product = products.find((p) => p.idProduct === productId);
     if (product) {
       const existingProduct = selectedProducts.find(
         (p) => p.idProduct === productId
       );
       if (existingProduct) {
-        // Actualizar cantidad si ya existe
         setSelectedProducts((prev) =>
           prev.map((p) =>
             p.idProduct === productId
-              ? { ...p, quantity: p.quantity + quantity, subtotal: (p.quantity + quantity) * p.price }
+              ? {
+                  ...p,
+                  quantity: p.quantity + quantity,
+                  subtotal: (p.quantity + quantity) * p.price,
+                }
               : p
           )
         );
       } else {
-        // Agregar nuevo producto
         const newProduct = {
           ...product,
           quantity,
@@ -71,16 +84,15 @@ function PuntoDeVenta() {
         setSelectedProducts((prev) => [...prev, newProduct]);
       }
     }
+    setQuantity(1); // Reiniciar la cantidad después de agregar
   };
 
-  // Eliminar un producto de la lista de venta
   const removeProduct = (productId) => {
     setSelectedProducts((prev) =>
       prev.filter((product) => product.idProduct !== productId)
     );
   };
 
-  // Calcular el total
   const calculateTotal = () => {
     const total = selectedProducts.reduce(
       (sum, product) => sum + product.subtotal,
@@ -89,7 +101,6 @@ function PuntoDeVenta() {
     setTotal(total);
   };
 
-  // Confirmar la venta
   const confirmSale = async () => {
     const saleDetails = selectedProducts.map((product) => ({
       product: { idProduct: product.idProduct },
@@ -101,7 +112,7 @@ function PuntoDeVenta() {
       date,
       total,
       paymentMethod,
-      client: { idClient: 1 }, // Cliente fijo, puedes cambiar esto según tu lógica
+      client: { idClient: client },
       employee: { idEmployee: employee },
       saleDetails,
     };
@@ -116,7 +127,6 @@ function PuntoDeVenta() {
     }
   };
 
-  // Cancelar la venta
   const cancelSale = () => {
     if (window.confirm("¿Estás seguro de que deseas cancelar la venta?")) {
       setSelectedProducts([]);
@@ -128,7 +138,6 @@ function PuntoDeVenta() {
     <div className="p-8">
       <h2 className="text-3xl font-bold mb-4 text-pink-500">Punto de Venta</h2>
       <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-        {/* Fecha */}
         <div className="mb-4">
           <label className="block mb-2 font-bold">Fecha:</label>
           <input
@@ -138,8 +147,6 @@ function PuntoDeVenta() {
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
-
-        {/* Empleado */}
         <div className="mb-4">
           <label className="block mb-2 font-bold">Empleado:</label>
           <select
@@ -147,25 +154,33 @@ function PuntoDeVenta() {
             value={employee || ""}
             onChange={(e) => setEmployee(e.target.value)}
           >
-            {employees.length > 0 ? (
-              employees.map((emp) => (
-                <option key={emp.idEmployee} value={emp.idEmployee}>
-                  {emp.user.name}
-                </option>
-              ))
-            ) : (
-              <option value="">Cargando empleados...</option>
-            )}
+            {employees.map((emp) => (
+              <option key={emp.idEmployee} value={emp.idEmployee}>
+                {emp.user.name}
+              </option>
+            ))}
           </select>
         </div>
-
-        {/* Productos */}
+        <div className="mb-4">
+          <label className="block mb-2 font-bold">Cliente:</label>
+          <select
+            className="p-2 border rounded w-full"
+            value={client || ""}
+            onChange={(e) => setClient(e.target.value)}
+          >
+            {clients.map((cli) => (
+              <option key={cli.idClient} value={cli.idClient}>
+                {cli.user.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="mb-4">
           <label className="block mb-2 font-bold">Seleccionar Producto:</label>
           <div className="flex items-center">
             <select
               className="p-2 border rounded w-full mr-2"
-              onChange={(e) => addProduct(parseInt(e.target.value), 1)}
+              onChange={(e) => addProduct(parseInt(e.target.value))}
             >
               <option value="">Seleccione un producto</option>
               {products.map((product) => (
@@ -174,10 +189,21 @@ function PuntoDeVenta() {
                 </option>
               ))}
             </select>
+            <input
+              type="number"
+              className="p-2 border rounded w-20 mr-2"
+              value={quantity}
+              min="1"
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
+            />
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={() => addProduct(parseInt(document.querySelector("select").value))}
+            >
+              Agregar
+            </button>
           </div>
         </div>
-
-        {/* Tabla de productos seleccionados */}
         <div className="mt-4 bg-white p-4 rounded-lg">
           <h3 className="font-bold mb-4">Productos seleccionados</h3>
           <table className="w-full text-left border">
@@ -210,8 +236,6 @@ function PuntoDeVenta() {
             </tbody>
           </table>
         </div>
-
-        {/* Total y acciones */}
         <div className="flex justify-between items-center mt-6">
           <h3 className="text-xl font-bold">Total: ${total.toFixed(2)}</h3>
           <select
@@ -219,8 +243,11 @@ function PuntoDeVenta() {
             value={paymentMethod}
             onChange={(e) => setPaymentMethod(e.target.value)}
           >
-            <option value="EFECTIVO">Efectivo</option>
-            <option value="TARJETA">Tarjeta</option>
+            {paymentMethods.map((method) => (
+              <option key={method} value={method}>
+                {method}
+              </option>
+            ))}
           </select>
           <button
             className="bg-green-500 text-white px-4 py-2 rounded"
