@@ -5,6 +5,7 @@ import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 import WorkerDashboard from './pages/WorkerDashboard/WorkerDashboard';
 import MainWeb from './pages/webpage/MainWeb';
 import './style.scss';
+import Login from './pages/login/login';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Routes>
         {/* Ruta para la página principal */}
         <Route path="/" element={<MainWeb />} />
+
+        <Route path="/iniciar-sesion" element={<Login />} />
 
         {/* Ruta del dashboard de admin */}
         <Route path="/admin/*" element={<AdminDashboard />} />
