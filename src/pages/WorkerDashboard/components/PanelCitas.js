@@ -19,7 +19,6 @@ function PanelCitas() {
   const fetchAppointments = async () => {
     try {
       const response = await getAllAppointments();
-      console.log(response)
       setAppointments(response || []);
       setFilteredAppointments(response || []); // Inicialmente, mostrar todas las citas
     } catch (error) {
