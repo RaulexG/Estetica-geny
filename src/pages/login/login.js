@@ -25,7 +25,7 @@ function Login() {
 
       // Redirige según el rol del usuario
       if (user.role === "CLIENT") {
-        navigate("/");
+        navigate("/client");
       } else if (user.role === "EMPLOYEE") {
         navigate("/worker");
       } else if (user.role === "ADMIN") {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/Logo.svg';
 
-function Nav() {
+function Nav2() {
   return (
     <nav className="flex justify-between items-center p-4 bg-gray-custom">
       <Link to="/" className="flex items-center">
@@ -13,10 +13,10 @@ function Nav() {
       <li><a className="text-white text-lg font-semibold hover:text-gray-200" href="#productos">Productos</a></li>
       <li><a className="text-white text-lg font-semibold hover:text-gray-200" href="#citas">Citas</a></li>
       <li><a className="text-white text-lg font-semibold hover:text-gray-200" href="#informacion">Información</a></li>
-        <li><Link className="text-white text-lg font-semibold hover:text-gray-200" to="/iniciar-sesion">Iniciar sesión</Link></li>
+      <li><Link className="text-white text-lg font-semibold hover:text-gray-200" to="/citas">perfil</Link></li>
       </ul>
     </nav>
   );
 }
 
-export default Nav;
+export default Nav2;

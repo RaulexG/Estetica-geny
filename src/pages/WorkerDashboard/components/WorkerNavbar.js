@@ -12,7 +12,7 @@ function WorkerNavbar() {
         <Link to="/worker" className="text-white font-bold text-lg">Citas</Link>
         <Link to="/worker/punto-de-venta" className="text-white font-bold text-lg">Punto de Venta</Link>
         <Link to="/worker/perfil" className="text-white font-bold text-lg">Perfil</Link>
-        <button className="text-white font-bold text-lg">Cerrar Sesión</button>
+        <Link to="/" className="text-white font-bold text-lg">Cerrar Sesión</Link>        
       </div>
     </nav>
   );

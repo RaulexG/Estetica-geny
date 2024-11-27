@@ -7,6 +7,7 @@ import MainWeb from './pages/webpage/MainWeb';
 import './style.scss';
 import Login from './pages/login/login';
 import Citas from './pages/webpage/components/citasComponent';
+import MainWebUser from './pages/webpage/MainWebUser';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/" element={<MainWeb />} />
 
         <Route path="/iniciar-sesion" element={<Login />} />
+
+        <Route path="/client" element={<MainWebUser />} />
 
         {/* Ruta del dashboard de admin */}
         <Route path="/admin/*" element={<AdminDashboard />} />

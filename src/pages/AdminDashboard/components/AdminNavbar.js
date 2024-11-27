@@ -47,7 +47,7 @@ function AdminNavbar() {
           <span className="text-xs">Perfil</span>
         </Link>
 
-        <Link to="/admin/sesion" className="text-white hover:text-gray-300 text-sm flex items-center">
+        <Link to="/" className="text-white hover:text-gray-300 text-sm flex items-center">
           <span>Cerrar sesión</span>
         </Link>
       </div>

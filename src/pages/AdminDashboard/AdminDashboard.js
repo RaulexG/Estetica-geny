@@ -6,9 +6,9 @@ import Dashboard from './components/Dashboard';
 import Servicios from './components/Servicios';
 import EditarServicio from './components/EditarServicio';
 import Productos from './components/Productos';
-import AgregarServicio from './components/AgregarServicio'; // Importa el componente
-import AgregarProducto from './components/AgregarProducto'; // Asegúrate de que esté importado correctamente
-import EditarProducto from './components/EditarProducto';   // Asegúrate de que esté importado correctamente
+import AgregarServicio from './components/AgregarServicio'; 
+import AgregarProducto from './components/AgregarProducto'; 
+import EditarProducto from './components/EditarProducto';   
 import Cuentas from './components/Cuentas';
 import Perfil from './components/Perfil';
 
@@ -23,8 +23,8 @@ function AdminDashboard() {
           <Route path="/servicios/agregar" element={<AgregarServicio />} />
           <Route path="/servicios/editar/:id" element={<EditarServicio />} />
           <Route path="/productos" element={<Productos />} />
-          <Route path="/productos/agregar" element={<AgregarProducto />} /> {/* Ruta correcta para agregar producto */}
-          <Route path="/productos/editar/:id" element={<EditarProducto />} /> {/* Ruta correcta para editar producto */}
+          <Route path="/productos/agregar" element={<AgregarProducto />} /> 
+          <Route path="/productos/editar/:id" element={<EditarProducto />} /> 
           <Route path="/cuentas" element={<Cuentas />} />
           <Route path="/perfil" element={<Perfil />} />
         </Routes>
