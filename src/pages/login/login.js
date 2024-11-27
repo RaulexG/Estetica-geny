@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../webpage/assets/Logo.svg";
+import { UserContext } from "../../context/UserContext"; // Asegúrate de usar la ruta correcta
 import { loginUser } from "../../services/loginService"; // Servicio para manejar el login
+import logo from "../webpage/assets/Logo.svg"; // Ruta del logo
 
 function Login() {
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext); // Accede al contexto del usuario
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // Para manejar errores
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,6 +20,9 @@ function Login() {
       const response = await loginUser(loginData); // Llamada al servicio de login
       const user = response.data;
 
+      // Actualiza el contexto con el usuario logueado
+      setUser(user);
+
       // Redirige según el rol del usuario
       if (user.role === "CLIENT") {
         navigate("/");
@@ -25,11 +31,11 @@ function Login() {
       } else if (user.role === "ADMIN") {
         navigate("/admin");
       } else {
-        alert("Rol desconocido. Contacta al administrador.");
+        setErrorMessage("Rol desconocido. Contacta al administrador.");
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error.response?.data || error.message);
-      alert("Credenciales inválidas o error en el servidor.");
+      setErrorMessage("Credenciales inválidas o error en el servidor.");
     }
   };
 
@@ -89,6 +95,9 @@ function Login() {
               </button>
             </div>
           </div>
+          {errorMessage && (
+            <p className="text-red-500 text-sm mb-4">{errorMessage}</p>
+          )}
           <div className="flex items-center justify-between mb-4">
             <div>
               <label className="inline-flex items-center">
