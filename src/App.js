@@ -6,6 +6,7 @@ import WorkerDashboard from './pages/WorkerDashboard/WorkerDashboard';
 import MainWeb from './pages/webpage/MainWeb';
 import './style.scss';
 import Login from './pages/login/login';
+import Citas from './pages/webpage/components/citasComponent';
 
 function App() {
   return (
@@ -21,9 +22,12 @@ function App() {
 
         {/* Ruta del dashboard de trabajador */}
         <Route path="/worker/*" element={<WorkerDashboard />} />
+        <Route path="/citas" element={<Citas />} /> {/* Correcto */}
 
         {/* Redirige a la página principal si la ruta no existe */}
         <Route path="*" element={<Navigate to="/" />} />
+
+        
       </Routes>
     </Router>
   );

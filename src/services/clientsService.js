@@ -22,6 +22,16 @@ export const getClientById = async (id) => {
   }
 };
 
+export const getAllAppointmentsByClientId = async (id) => {
+  try {
+    return await axios.get(`${BASE_URL}/findAllAppointments/${id}`);
+  } catch (error) {
+    console.error(`Error al obtener las citas del cliente con ID ${id}:`, error);
+    throw error;
+  }
+};
+
+
 // Agregar un nuevo cliente
 export const addClient = async (clientData) => {
   try {
