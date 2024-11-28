@@ -56,8 +56,8 @@ function Citas() {
           }));
         }
       } catch (err) {
-        console.error("Error al obtener datos del cliente:", err);
-        setAlert({ type: "error", message: "Error al obtener los datos del cliente." });
+        console.error("Inicia sesion", err);
+        setAlert({ type: "error", message: "Inicia sesion" });
       }
     };
     fetchClientData();
@@ -122,7 +122,7 @@ function Citas() {
       formData.selectedServices.length === 0 ||
       formData.total <= 0
     ) {
-      setAlert({ type: "error", message: "Por favor, completa todos los campos requeridos." });
+      setAlert({ type: "error", message: "Inicia sesión" });
       return;
     }
 
@@ -157,8 +157,8 @@ function Citas() {
         total: 0,
       });
     } catch (error) {
-      console.error("Error al generar la cita:", error.response?.data || error.message);
-      setAlert({ type: "error", message: "Error al generar la cita. Inténtalo de nuevo." });
+      console.error("Elige otro horario", error.response?.data || error.message);
+      setAlert({ type: "error", message: "Elige otro horario" });
     }
   };
 
